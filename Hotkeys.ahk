@@ -99,6 +99,26 @@ Return
 #XButton2::Media_Next ; win + mouse next button
 Return
 
+; *********************** Functions ****************************************
+ActivateOrOpen(window, program)
+{
+	; check if window exists
+	if WinExist(window)
+	{
+		WinActivate  ; Uses the last found window.
+	}
+	else
+	{   ; else start requested program
+		 Run cmd /c "start ^"^" ^"%program%^"",, Hide ;use cmd in hidden mode to launch requested program
+		 WinWait, %window%,,5		; wait up to 5 seconds for window to exist
+		 IfWinNotActive, %window%, , WinActivate, %window%
+		 {
+			  WinActivate  ; Uses the last found window.
+		 }
+	}
+	return
+}
+
 ; ********************* Personal stuff *************************************
 
 ; ********************* Ryzenadj profile scripts ***************************
@@ -122,23 +142,3 @@ return
 ; Ryzenadj heavy gaming pro profile
 #F6::Run C:\Users\Ivica\Desktop\Heavy gaming pro.lnk ; win + F6
 return
-
-; *********************** Functions ****************************************
-ActivateOrOpen(window, program)
-{
-	; check if window exists
-	if WinExist(window)
-	{
-		WinActivate  ; Uses the last found window.
-	}
-	else
-	{   ; else start requested program
-		 Run cmd /c "start ^"^" ^"%program%^"",, Hide ;use cmd in hidden mode to launch requested program
-		 WinWait, %window%,,5		; wait up to 5 seconds for window to exist
-		 IfWinNotActive, %window%, , WinActivate, %window%
-		 {
-			  WinActivate  ; Uses the last found window.
-		 }
-	}
-	return
-}
