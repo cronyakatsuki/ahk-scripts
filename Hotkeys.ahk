@@ -39,6 +39,9 @@ Return
 ; Launch mega sync
 #^m::ActivateOrOpen("MEGAsync", "C:\ProgramData\MEGAsync\MEGAsync.exe")
 
+; Launch QuiteRSS
+#n::ActivateOrOpen("- QuiteRSS", "C:\Program Files (x86)\QuiteRSS\QuiteRSS.exe")
+
 ;Launch vscode
 #v::ActivateOrOpen("- Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe") ; win + v
 
