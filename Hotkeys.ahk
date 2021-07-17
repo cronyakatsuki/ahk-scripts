@@ -68,7 +68,7 @@ return
 return
 
 ; Always on Top
-#SPACE:: Winset, Alwaysontop, , A ; ctrl + space
+#SPACE:: Winset, Alwaysontop, , A ; win + space
 Return
 
 ; Close a window
@@ -93,6 +93,8 @@ return
 
 ; media next with next button on mouse button
 #XButton2::Media_Next ; win + mouse next button
+
+; ********************* Personal stuff *************************************
 
 ; ********************* Ryzenadj profile scripts ***************************
 
