@@ -81,18 +81,23 @@ return
 
 ; mousewheel up volume up
 #WheelUp::SoundSet, +2 ; win + wheel down
+Return
 
 ; mouse wheel down volume down
 #WheelDown::SoundSet, -2 ; win + wheel up
+Return
 
 ; pause play media with middle mouse button
 #MButton::Media_Play_Pause ; win + middle mouse button
+Return
 
 ; Media back with back button on mouse
 #XButton1::Media_Prev ; win + mouse back button
+Return
 
 ; media next with next button on mouse button
 #XButton2::Media_Next ; win + mouse next button
+Return
 
 ; ********************* Personal stuff *************************************
 
