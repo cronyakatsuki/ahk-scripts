@@ -14,18 +14,16 @@ setTitleMatchMode, 2 ; set title match mode to "contains"
 
 ; Reload script
 #+r::Reload ; win + shift + r
+Return
 
 ; Edit script
-#+e::Edit ; win + shift + e
+;#+e::Edit ; win + shift + e
+;Return
 
 ; *********************** Program Shortcuts *********************************
 
 ;Launch windows terminal
 #t::ActivateOrOpen("Windows Terminal", "wt") ; win + t
-
-;Launch windows terminal with adl
-#a::Run wt adl ; win + a
-Return
 
 ;Launch brave browser
 #b::ActivateOrOpen("- Brave", "C:\Users\Ivica\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe") ; win + b
@@ -48,15 +46,23 @@ Return
 ;Launch spofity
 #+m::ActivateOrOpen("SpotifyMainWindow", "C:\Users\Ivica\AppData\Roaming\Spotify\Spotify.exe") ; win + m
 
+;Launch inteligent list cleaner
+#+i::Run "C:\Users\Ivica\Downloads\Programs\ISLC v1.0.2.2\Intelligent standby list cleaner ISLC.exe" ; win + shift + i
+Return
+
+;Launch matrix screen saver
+#^l::Run "C:\Program Files (x86)\Another Matrix Screen Saver\Another Matrix Screen Saver.scr" /s
+Return
+
 ; *********************** Folder Shortcuts **********************************
 
 ; Open Downloads folder
 #+d::Run "C:\Users\Ivica\Downloads" ; ctrl + shift + d
-return
+Return
 
 ;Open LightNovels folder
 #+l::Run "C:\Users\Ivica\Lightnovels" ; ctrl + shift + l
-return
+Return
 
 ; ********************** Cool Functionality ********************************
 
@@ -64,11 +70,11 @@ return
 #IfWinActive, ahk_class CabinetWClass
 ~MButton::Send !{Up} 
 #IfWinActive
-return
+Return
  
 ; Empty trash
 #Del::FileRecycleEmpty ; win + del
-return
+Return
 
 ; Always on Top
 #SPACE:: Winset, Alwaysontop, , A ; win + space
@@ -78,7 +84,7 @@ Return
 #+q:: ; win + shift + q
 WinGetTitle, Title, A
 PostMessage, 0x112, 0xF060,,, %Title%
-return
+Return
 
 ; ******************** Media control **************************************
 
@@ -102,6 +108,33 @@ Return
 #XButton2::Media_Next ; win + mouse next button
 Return
 
+; ********************* Personal stuff *************************************
+
+; ********************* Ryzenadj profile scripts ***************************
+
+; Run my ryzenadj scripts from desktop
+; Ryzenadj fluff profile
+#F1::Run C:\Users\Ivica\ShortCuts\ryzenadj-runner.lnk ; win + F1
+Return
+; Ryzenadj normal profile
+#F2::Run C:\Users\Ivica\ShortCuts\Normal mode.lnk ; win + F2
+Return
+; Ryzenadj light gaming profile
+#F3::Run C:\Users\Ivica\ShortCuts\Light gaming.lnk ; win + F3
+Return
+; Ryzenadj heavy gaming profile
+#F4::Run C:\Users\Ivica\ShortCuts\Heavy gaming.lnk ; win + F4
+Return
+; Ryzenadj heavy programs profile
+#F5::Run C:\Users\Ivica\ShortCuts\Heavy programs.lnk ; win + F5
+Return
+; Ryzenadj heavy gaming pro profile
+#F6::Run C:\Users\Ivica\ShortCuts\Heavy gaming pro.lnk ; win + F6
+Return
+; Acer Quick Acces
+#+g::Run C:\Users\Ivica\ShortCuts\Quick Access.lnk ; win + Shif + G
+Return
+
 ; *********************** Functions ****************************************
 ActivateOrOpen(window, program)
 {
@@ -119,29 +152,5 @@ ActivateOrOpen(window, program)
 			  WinActivate  ; Uses the last found window.
 		 }
 	}
-	return
+	Return
 }
-
-; ********************* Personal stuff *************************************
-
-; ********************* Ryzenadj profile scripts ***************************
-
-; Run my ryzenadj scripts from desktop
-; Ryzenadj fluff profile
-#F1::Run C:\Users\Ivica\Desktop\Fluff mode.lnk ; win + F1
-return
-; Ryzenadj normal profile
-#F2::Run C:\Users\Ivica\Desktop\Normal mode.lnk ; win + F2
-return
-; Ryzenadj light gaming profile
-#F3::Run C:\Users\Ivica\Desktop\Light gaming.lnk ; win + F3
-return
-; Ryzenadj heavy gaming profile
-#F4::Run C:\Users\Ivica\Desktop\Heavy gaming.lnk ; win + F4
-return
-; Ryzenadj heavy programs profile
-#F5::Run C:\Users\Ivica\Desktop\Heavy programs.lnk ; win + F5
-return
-; Ryzenadj heavy gaming pro profile
-#F6::Run C:\Users\Ivica\Desktop\Heavy gaming pro.lnk ; win + F6
-return
