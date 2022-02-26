@@ -17,13 +17,18 @@ setTitleMatchMode, 2 ; set title match mode to "contains"
 Return
 
 ; Edit script
-;#+e::Edit ; win + shift + e
-;Return
+#+e::Edit ; win + shift + e
+Return
 
 ; *********************** Program Shortcuts *********************************
 
-;Launch windows terminal
-#t::ActivateOrOpen("Windows Terminal", "wt") ; win + t
+;Launch alacritty
+#t::ActivateOrOpen("Alacritty", "alacritty") ; win + t
+Return
+
+;Launch arch wsl in alacritty
+#+t::ActivateOrOpen("Alacritty", "C:\Users\Ivica\ShortCuts\Arch.lnk") ; win + shift + t
+Return
 
 ;Launch brave browser
 #b::ActivateOrOpen("- Brave", "C:\Users\Ivica\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe") ; win + b
@@ -31,8 +36,21 @@ Return
 ; Launch bitwarden
 #+b::ActivateOrOpen("Bitwarden", "C:\Program Files\Bitwarden\Bitwarden.exe")
 
-; Launch msi afterburner
-#g::ActivateOrOpen("MSI Afterburner", "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe")
+; Toggle msi afterburner
+#g::
+Process, Exist, MSIAfterburner.exe
+{
+	If ! ErrorLevel
+	{
+		Run, "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"
+	}
+	Else
+	{
+		Process, Close, MSIAfterburner.exe
+	}
+}
+Return
+
 
 ; Launch mega sync
 #^m::ActivateOrOpen("MEGAsync", "C:\ProgramData\MEGAsync\MEGAsync.exe")
@@ -40,18 +58,22 @@ Return
 ; Launch QuiteRSS
 #n::ActivateOrOpen("- QuiteRSS", "C:\Program Files (x86)\QuiteRSS\QuiteRSS.exe")
 
-;Launch vscode
-#v::ActivateOrOpen("- Visual Studio Code", "C:\Program Files\Microsoft VS Code\Code.exe") ; win + v
-
 ;Launch spofity
 #+m::ActivateOrOpen("SpotifyMainWindow", "C:\Users\Ivica\AppData\Roaming\Spotify\Spotify.exe") ; win + m
 
-;Launch inteligent list cleaner
-#+i::Run "C:\Users\Ivica\Downloads\Programs\ISLC v1.0.2.2\Intelligent standby list cleaner ISLC.exe" ; win + shift + i
-Return
-
-;Launch matrix screen saver
-#^l::Run "C:\Program Files (x86)\Another Matrix Screen Saver\Another Matrix Screen Saver.scr" /s
+;Toggle FreeDownloadManager
+#+f::
+Process, Exist, fdm.exe
+{
+	if ! ErrorLevel
+	{
+		Run, "C:\Users\Ivica\AppData\Local\Softdeluxe\Free Download Manager\fdm.exe" --minimized
+	}
+	Else
+	{
+		Process, Close, %ErrorLevel%
+	}
+}
 Return
 
 ; *********************** Folder Shortcuts **********************************
@@ -70,10 +92,6 @@ Return
 #IfWinActive, ahk_class CabinetWClass
 ~MButton::Send !{Up} 
 #IfWinActive
-Return
- 
-; Empty trash
-#Del::FileRecycleEmpty ; win + del
 Return
 
 ; Always on Top
@@ -113,8 +131,8 @@ Return
 ; ********************* Ryzenadj profile scripts ***************************
 
 ; Run my ryzenadj scripts from desktop
-; Ryzenadj fluff profile
-#F1::Run C:\Users\Ivica\ShortCuts\ryzenadj-runner.lnk ; win + F1
+; Ryzenadj manager for my game specific scripts
+#F1::Run C:\Users\Ivica\ShortCuts\RyzenAdj Browser.lnk
 Return
 ; Ryzenadj normal profile
 #F2::Run C:\Users\Ivica\ShortCuts\Normal mode.lnk ; win + F2
@@ -153,4 +171,9 @@ ActivateOrOpen(window, program)
 		 }
 	}
 	Return
+}
+
+CmdRun(program)
+{
+	Run cmd /c "start ^"^" ^"%program%^"",, Hide
 }
